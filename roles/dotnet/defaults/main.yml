@@ -1,0 +1,20 @@
+---
+aspnet_runtimes:
+  - name: dotnetcore-2.1-aspnetruntime
+    version: "2.1.30"
+  - name: dotnetcore-3.1-aspnetruntime
+    version: "3.1.32"
+  - name: dotnet-5.0-aspnetruntime
+    version: "5.0.17"
+  - name: dotnet-6.0-aspnetruntime
+    version: "6.0.36"
+  - name: dotnet-7.0-aspnetruntime
+    version: "7.0.14"
+  - name: dotnet-8.0-aspnetruntime
+    version: "8.0.12"
+
+aspnet_sdks:
+  - name: dotnetcore-sdk
+    version: "3.1.426"
+  - name: dotnet-sdk
+    version: "7.0.405"

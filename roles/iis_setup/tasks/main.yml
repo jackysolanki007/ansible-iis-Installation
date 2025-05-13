@@ -1,0 +1,36 @@
+---
+- name: Install IIS and required features
+  ansible.windows.win_feature:
+    name: "{{ item }}"
+    state: present
+    include_management_tools: yes
+  loop: "{{ iis_features + ftp_features }}"
+  notify: restart server
+  tags: installation
+
+- name: Create website directory structure
+  ansible.windows.win_file:
+    path: "{{ website_path }}"
+    state: directory
+  tags: directories
+
+- name: Configure default website
+  community.windows.win_iis_website:
+    name: "{{ website_name }}"
+    state: started
+    port: "{{ website_port }}"
+    physical_path: "{{ website_path }}"
+  tags: website
+
+- name: Check if HTTP firewall rule exists
+  ansible.windows.win_command: netsh advfirewall firewall show rule name="{{ firewall_rule_name }}"
+  register: firewall_rule_check
+  failed_when: false
+  changed_when: false
+  tags: firewall
+
+- name: Add HTTP firewall rule if missing
+  ansible.windows.win_command: "{{ firewall_rule_command }}"
+  when: firewall_rule_check.stdout is search("No rules match the specified criteria")
+  tags:
+    - firewall

@@ -1,0 +1,16 @@
+---
+app_pools:
+  - name: "NET v2.0"
+    managed_runtime_version: "v2.0"
+    managed_pipeline_mode: "classic"
+  - name: "NET v2.0 Integrated"
+    managed_runtime_version: "v2.0"
+    managed_pipeline_mode: "integrated"
+
+  - name: "NET v4.5"
+    managed_runtime_version: "v4.0"
+    managed_pipeline_mode: "classic"
+  - name: "NET v4.5 Integrated"
+    managed_runtime_version: "v4.0"
+    managed_pipeline_mode: "integrated"
+

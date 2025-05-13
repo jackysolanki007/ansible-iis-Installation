@@ -1,0 +1,23 @@
+---
+- name: Ensure Chocolatey is installed
+  win_chocolatey:
+    name: chocolatey
+    state: present
+
+- name: Install ASP.NET Core Runtimes
+  win_chocolatey:
+    name:  "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: present
+  loop: "{{ aspnet_runtimes }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"
+
+- name: Install .NET Core SDKs
+  win_chocolatey:
+    name:  "{{ item.name }}"
+    version: "{{ item.version }}"
+    state: present
+  loop: "{{ aspnet_sdks }}"
+  loop_control:
+    label: "{{ item.name }} {{ item.version }}"

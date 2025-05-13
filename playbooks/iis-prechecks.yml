@@ -1,0 +1,36 @@
+- name: IIS Pre-Deployment Checks
+  hosts: windows
+  gather_facts: no
+  vars_files:
+    - ../vars/iis_vars.yml
+
+  tasks:
+    - name: Test WinRM connection
+      ansible.windows.win_ping:
+      register: connection_test
+      tags: always
+
+    - name: List all IIS Application Pools (using appcmd)
+      ansible.windows.win_command: "{{ appcmd_path }} list apppools"
+      register: app_pools
+      changed_when: false
+      tags:
+        - apppools
+        - pre_deploy
+
+    - name: List all IIS Websites (using appcmd)
+      ansible.windows.win_command: "{{ appcmd_path }} list sites"
+      register: websites
+      changed_when: false
+      tags:
+        - sites
+        - pre_deploy
+
+    - name: Display IIS Application Pools
+      ansible.builtin.debug:
+        var: app_pools.stdout_lines
+      tags: apppools
+
+    - name: Display IIS Websites
+      ansible.builtin.debug:
+        var: websites.stdout_lines

@@ -1,0 +1,11 @@
+---
+- name: Configure IIS
+  hosts: windows
+  gather_facts: no
+  vars_files:
+    - ../vars/firewall_rule.yml
+    - ../vars/app_pools.yml
+  
+  roles:
+    - role: iis_setup
+  tags: setup

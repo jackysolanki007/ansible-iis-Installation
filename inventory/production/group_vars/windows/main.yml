@@ -1,0 +1,6 @@
+---
+ansible_connection: winrm
+ansible_winrm_transport: ntlm
+ansible_winrm_server_cert_validation: ignore
+ansible_user: "{{ vaulted_windows_user }}"
+ansible_password: "{{ vaulted_windows_password }}"

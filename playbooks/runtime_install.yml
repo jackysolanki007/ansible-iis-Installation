@@ -1,0 +1,7 @@
+---
+- name: Install .NET Core Runtime on Windows hosts
+  hosts: windows
+  gather_facts: yes
+
+  roles:
+    - dotnet

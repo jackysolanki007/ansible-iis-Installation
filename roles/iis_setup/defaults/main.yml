@@ -1,0 +1,14 @@
+---
+iis_features:
+  - Web-Server
+  - Web-Mgmt-Tools
+  - Web-FTP-Server
+  - Web-Asp-Net
+  - NET-Framework-45-Features
+
+ftp_features:
+  - Web-FTP-Service
+
+website_name: "Default Web Site"
+website_port: 80
+website_path: "C:\\inetpub\\wwwroot"
